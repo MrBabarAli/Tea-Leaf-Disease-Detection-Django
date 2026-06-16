@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Tea Leaf Disease Detection</title>
+
+```
+<style>
+
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f6f8;
+        margin:0;
+        padding:40px;
+    }
+
+    .container{
+        max-width:800px;
+        margin:auto;
+        background:white;
+        padding:30px;
+        border-radius:12px;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+        text-align:center;
+        color:#2e7d32;
+    }
+
+    form{
+        text-align:center;
+        margin-top:20px;
+    }
+
+    input[type=file]{
+        margin:15px;
+    }
+
+    button{
+        background:#2e7d32;
+        color:white;
+        border:none;
+        padding:10px 20px;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#1b5e20;
+    }
+
+    .result-card{
+        margin-top:30px;
+        padding:20px;
+        border-radius:10px;
+        background:#f8f9fa;
+    }
+
+    .section-title{
+        color:#2e7d32;
+        margin-top:15px;
+    }
+
+    .high{
+        color:red;
+        font-weight:bold;
+    }
+
+    .medium{
+        color:orange;
+        font-weight:bold;
+    }
+
+    .low{
+        color:green;
+        font-weight:bold;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<h1>🍃 Tea Leaf Disease Detection System</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <input type="file" name="image" required>
+
+    <br>
+
+    <button type="submit">Predict Disease</button>
+
+</form>
+
+{% if result %}
+
+<div class="result-card">
+
+    <h2>Prediction Result</h2>
+
+    <p><strong>Disease:</strong> {{ result }}</p>
+
+    <p>
+        <strong>Confidence:</strong>
+        {{ confidence|floatformat:2 }}
+    </p>
+
+    <p>
+        <strong>Severity:</strong>
+
+        {% if "High" in severity %}
+            <span class="high">{{ severity }}</span>
+
+        {% elif "Moderate" in severity %}
+            <span class="medium">{{ severity }}</span>
+
+        {% else %}
+            <span class="low">{{ severity }}</span>
+
+        {% endif %}
+    </p>
+
+    <h3 class="section-title">Symptoms</h3>
+    <p>{{ info.symptoms }}</p>
+
+    <h3 class="section-title">Treatment</h3>
+    <p>{{ info.treatment }}</p>
+
+    <h3 class="section-title">Prevention</h3>
+    <p>{{ info.prevention }}</p>
+
+</div>
+
+{% endif %}
+```
+
+</div>
+
+</body>
+</html>
