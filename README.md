@@ -122,10 +122,6 @@ Class: Brown Blight
 Confidence: 0.98
 ```
 
-## Screenshots
-
-*(Add 2 to 3 screenshots of the upload page and the prediction result, e.g. `![Home](docs/home.png)`)*
-
 ## Limitations
 
 - Trained on a single dataset, so accuracy may drop on photos taken in very different lighting or backgrounds.
